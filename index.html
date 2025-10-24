@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Autobiography</title>
+
+  <style>
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      background-color: #f9fafc;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+    }
+
+    .sidebar {
+      width: 25%;
+      background: linear-gradient(180deg, #4b6cb7, #182848);
+      color: white;
+      padding: 30px 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: 1px;
+      font-size: 1.5rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 10px;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    .sidebar li {
+      margin: 12px 0;
+      cursor: pointer;
+      padding: 12px 16px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .sidebar li:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+      transform: translateX(5px);
+    }
+
+    .content {
+      width: 75%;
+      padding: 30px 40px;
+      overflow-y: auto;
+      background-color: #ffffff;
+    }
+
+    .welcome {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      background: linear-gradient(135deg, #e3f2fd, #ffffff);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.8s ease;
+    }
+
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .welcome-text h1 {
+      margin: 0;
+      color: #1e3a8a;
+      font-size: 2rem;
+    }
+
+    .welcome-text p {
+      margin-top: 10px;
+      color: #555;
+      font-size: 1.05rem;
+    }
+
+    .section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 25px;
+      background-color: #fdfdfd;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.8s ease;
+      margin-bottom: 30px;
+    }
+
+    .section-text h2 {
+      color: #2c3e50;
+      margin-top: 0;
+      font-size: 1.6rem;
+      border-left: 4px solid #4b6cb7;
+      padding-left: 10px;
+    }
+
+    .section-text p {
+      color: #555;
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
+
+    .section-img {
+      width: 300px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .section-img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar,
+      .content {
+        width: 100%;
+      }
+
+      .welcome,
+      .section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .section-img {
+        width: 85%;
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Contents</h2>
+      <ul id="sidebar-list">
+        <li data-section="home">Home</li>
+        <li data-section="early-life">Inspiration and Motivation</li>
+        <li data-section="education">Education</li>
+        <li data-section="career">Career</li>
+        <li data-section="hobbies">Hobbies and Interests</li>
+      </ul>
+    </div>
+
+    <div class="content" id="content-area">
+      <div class="welcome">
+        <img
+          src="Ako.png"
+          alt="My Photo"
+          class="profile-pic"
+        />
+        <div class="welcome-text">
+          <h1>Hi, I am Kyle & Welcome to My Autobiography</h1>
+          <p>Select a section from the left to view details.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sidebarItems = document.querySelectorAll("#sidebar-list li");
+      const contentArea = document.getElementById("content-area");
+
+      sidebarItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          const section = this.getAttribute("data-section");
+          let content = "";
+
+          switch (section) {
+            case "home":
+              content = `
+                <div class="welcome">
+                  <img
+                    src="Ako.png"
+                    alt="My Photo"
+                    class="profile-pic"
+                  />
+                  <div class="welcome-text">
+                    <h1>Welcome to My Autobiography</h1>
+                    <p>Select a section from the left to view details.</p>
+                  </div>
+                </div>
+              `;
+              break;
+
+            case "early-life":
+              content = `
+                <div class="section">
+                  <div class="section-text">
+                    <h2>Inspiration and Motivation</h2>
+                    <p>One of my inspirations and motivation to keep going is my family. They remind me of why I started and who I’m doing it all for. Their love and support give me the strength to overcome any challenge that comes my way.</p>
+                  </div>
+                  <img src="Famfam.png" alt="My Family" class="section-img">
+                </div>
+
+                <div class="section" style="margin-top: 30px;">
+                  <div class="section-text">
+                    <h2>My Friends</h2>
+                    <p>My friends have always been a great source of joy and encouragement. They stand by me through ups and downs, helping me stay grounded and motivated to reach my goals.</p>
+                  </div>
+                  <img src="Diploma.png" alt="My Friends" class="section-img">
+                </div>
+              `;
+              break;
+
+            case "education":
+              content = `
+                <div class="section">
+                  <div class="section-text">
+                    <h2>Education</h2>
+                    <p>I attended local schools and later graduated at Asian Learning Center with Java & Html NCII. I learned a lot from that school and met new people I faced hardships with. Those experiences helped me grow both personally and academically.</p>
+                  </div>
+                  <img src="Halimaw.png" alt="My Education" class="section-img">
+                </div>
+              `;
+              break;
+
+            case "career":
+              content = `
+                <div class="section">
+                  <div class="section-text">
+                    <h2>Career</h2>
+                    <p>As of now, I’m still studying at LLCC, and I’m grateful to have earned my place here through hard work and determination. In the future, I plan to pursue another degree in engineering, if the Lord sees it fit. I’m excited to see where this path will lead and how I can continue to grow both personally and professionally.</p>
+                  </div>
+                  <img src="wantaw.png" alt="My Career" class="section-img">
+                </div>
+              `;
+              break;
+
+            case "hobbies":
+              content = `
+                <div class="section">
+                  <div class="section-text">
+                    <h2>Chess</h2>
+                    <p>I love chess. I started playing when I was 15 and have been through a lot. I made friends and participated in multiple tournaments. Although I've never won one, I continued to improve each time. Chess has truly taught me patience and resilience.</p>
+                  </div>
+                  <img src="Chess.png" alt="Chess" class="section-img">
+                </div>
+
+                <div class="section">
+                  <div class="section-text">
+                    <h2>Armwrestling</h2>
+                    <p>I also play arm wrestling as one of my sports, and I love every second spent on it. The idea of clashing strength in a friendly manner fascinates me. It’s a great way to challenge myself both physically and mentally.</p>
+                  </div>
+                  <img src="Devon.png" alt="Armwresling" class="section-img">
+                </div>
+
+                <div class="section">
+                  <div class="section-text">
+                    <h2>Gym</h2>
+                    <p>I also go to the gym. I used to go frequently, but now I’ve been busy and mostly do home workouts. The gym opens my mind and helps me relieve stress. Staying active keeps me focused and motivated throughout the day.</p>
+                  </div>
+                  <img src="Gym.png" alt="Gym" class="section-img">
+                </div>
+              `;
+              break;
+
+            default:
+              content = `
+                <div class="welcome">
+                  <img src="Ako.png" alt="My Photo" class="profile-pic">
+                  <div class="welcome-text">
+                    <h1>Hi, I am Kyle & Welcome to My Autobiography</h1>
+                    <p>Select a section from the left to view details.</p>
+                  </div>
+                </div>
+              `;
+          }
+
+          contentArea.innerHTML = content;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
